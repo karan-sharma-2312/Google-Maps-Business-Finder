@@ -7,7 +7,7 @@ Apify Dataset/Key-Value Store, and exits. It also supports local simulation.
 from __future__ import annotations
 
 import asyncio
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 import json
 import os
 from pathlib import Path
@@ -23,7 +23,7 @@ async def execute_payload(payload: dict) -> dict:
     """Execute one normalized payload and return output envelope."""
     settings = get_settings()
     started = perf_counter()
-    now = datetime.now(tz=UTC).isoformat()
+    now = datetime.now(tz=timezone.utc).isoformat()
 
     mode = payload.get("mode", "google_maps")
     if mode == "google_maps":
