@@ -1,0 +1,8 @@
+{
+  "mode": "google_maps",
+  "query": "coffee shops",
+  "location": "New York",
+  "max_results": 5,
+  "save_json": true,
+  "url": null
+}
