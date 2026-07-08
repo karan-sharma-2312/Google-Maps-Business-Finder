@@ -1,0 +1,50 @@
+# Core web framework
+fastapi==0.116.1
+uvicorn[standard]==0.35.0
+
+# Data validation and settings
+pydantic==2.11.7
+pydantic-settings==2.10.1
+python-dotenv==1.1.1
+
+# HTTP and scraping
+requests==2.32.4
+beautifulsoup4==4.13.4
+playwright==1.54.0
+
+# CLI and terminal UX
+typer==0.16.0
+rich==14.0.0
+
+# Database and migrations
+sqlalchemy==2.0.42
+alembic==1.16.4
+aiosqlite==0.21.0
+asyncpg==0.30.0
+
+# Queue and scheduling
+celery==5.5.3
+redis==6.2.0
+
+# AI and orchestration
+openai==1.97.1
+google-genai==1.27.0
+langchain==0.3.27
+langgraph==0.5.3
+
+# Data processing and export
+pandas==2.3.1
+openpyxl==3.1.5
+jinja2==3.1.6
+
+# Logging
+loguru==0.7.3
+
+# Testing and quality
+pytest==8.4.1
+pytest-asyncio==1.1.0
+httpx==0.28.1
+mypy==1.17.0
+black==25.1.0
+ruff==0.12.4
+pre-commit==4.2.0
