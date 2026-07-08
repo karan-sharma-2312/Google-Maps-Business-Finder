@@ -48,3 +48,6 @@ mypy==1.17.0
 black==25.1.0
 ruff==0.12.4
 pre-commit==4.2.0
+
+# Apify runtime
+apify>=1.8.0,<2.0.0
