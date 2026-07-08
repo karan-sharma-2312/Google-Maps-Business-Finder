@@ -18,4 +18,4 @@ RUN playwright install chromium
 
 EXPOSE 8000
 
-CMD ["python", "run.py"]
+CMD ["python", "scripts/apify_actor.py"]
