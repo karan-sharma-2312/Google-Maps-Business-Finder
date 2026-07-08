@@ -5,7 +5,7 @@ These Pydantic models are the canonical data contracts for discovered businesses
 
 from __future__ import annotations
 
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 
 from pydantic import BaseModel, Field, HttpUrl
 
@@ -33,7 +33,7 @@ class BusinessRecord(BaseModel):
     business_status: str | None = None
     business_description: str | None = None
     business_images: list[HttpUrl] = Field(default_factory=list)
-    discovered_at: datetime = Field(default_factory=lambda: datetime.now(tz=UTC))
+    discovered_at: datetime = Field(default_factory=lambda: datetime.now(tz=timezone.utc))
 
 
 class BusinessSearchResult(BaseModel):
