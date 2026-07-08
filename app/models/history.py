@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 
 from sqlalchemy import DateTime, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
@@ -22,7 +22,7 @@ class SearchHistoryEntity(Base):
     requested_count: Mapped[int] = mapped_column(Integer)
     discovered_count: Mapped[int] = mapped_column(Integer)
     output_file: Mapped[str | None] = mapped_column(String(1024), nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(tz=UTC))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(tz=timezone.utc))
 
 
 class ExportHistoryEntity(Base):
@@ -34,4 +34,4 @@ class ExportHistoryEntity(Base):
     export_type: Mapped[str] = mapped_column(String(60), index=True)
     target: Mapped[str] = mapped_column(String(1024))
     metadata_json: Mapped[str | None] = mapped_column(Text, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(tz=UTC))
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(tz=timezone.utc))
