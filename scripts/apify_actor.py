@@ -152,13 +152,25 @@ def _set_kv_record(key: str, value: dict) -> None:
     store_id = _require_env("APIFY_DEFAULT_KEY_VALUE_STORE_ID")
     endpoint = f"{_apify_api_base()}/v2/key-value-stores/{store_id}/records/{key}"
 
+    payload = json.dumps(value, ensure_ascii=True)
     response = requests.put(
         endpoint,
-        params={"token": token, "contentType": "application/json; charset=utf-8"},
-        data=json.dumps(value, ensure_ascii=True),
+        params={"token": token},
+        headers={"Content-Type": "application/json"},
+        data=payload,
         timeout=30,
     )
-    response.raise_for_status()
+
+    # Some runtime gateways are strict about JSON metadata; fallback to text storage
+    # instead of failing the full run after dataset output already succeeded.
+    if response.status_code >= 400:
+        fallback = requests.put(
+            endpoint,
+            params={"token": token, "contentType": "text/plain"},
+            data=payload,
+            timeout=30,
+        )
+        fallback.raise_for_status()
 
 
 def run_apify_actor() -> None:
