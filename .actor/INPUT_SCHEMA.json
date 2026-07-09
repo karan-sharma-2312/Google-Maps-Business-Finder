@@ -1,0 +1,29 @@
+{
+  "title": "Google Maps Business Finder",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "mode": {
+      "type": "string",
+      "default": "google_maps"
+    },
+    "query": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "max_results": {
+      "type": "integer",
+      "default": 5
+    },
+    "save_json": {
+      "type": "boolean",
+      "default": true
+    },
+    "url": {
+      "type": "string"
+    }
+  },
+  "required": ["query"]
+}
