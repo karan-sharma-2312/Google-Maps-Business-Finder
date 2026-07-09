@@ -4,26 +4,39 @@
   "schemaVersion": 1,
   "properties": {
     "mode": {
+      "title": "Mode",
       "type": "string",
-      "default": "google_maps"
+      "default": "google_maps",
+      "editor": "textfield"
     },
     "query": {
-      "type": "string"
+      "title": "Search Query",
+      "type": "string",
+      "editor": "textfield"
     },
     "location": {
-      "type": "string"
+      "title": "Location",
+      "type": "string",
+      "editor": "textfield"
     },
     "max_results": {
+      "title": "Maximum Results",
       "type": "integer",
-      "default": 5
+      "default": 5,
+      "editor": "number"
     },
     "save_json": {
+      "title": "Save JSON",
       "type": "boolean",
       "default": true
     },
     "url": {
-      "type": "string"
+      "title": "Google Maps URL",
+      "type": "string",
+      "editor": "textfield"
     }
   },
-  "required": ["query"]
+  "required": [
+    "query"
+  ]
 }
