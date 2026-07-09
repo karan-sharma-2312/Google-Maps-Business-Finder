@@ -1,0 +1,20 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Google Maps Business Finder Outputs",
+  "description": "Links to the actor outputs stored in default dataset and key-value store.",
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "string",
+      "title": "Results Dataset",
+      "description": "All run results as JSON items.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    },
+    "outputRecord": {
+      "type": "string",
+      "title": "Output Record",
+      "description": "Final output envelope stored under OUTPUT key in the default key-value store.",
+      "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/OUTPUT"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "mode": {
+        "type": "string",
+        "title": "Run mode",
+        "description": "Execution mode used for this item.",
+        "enum": ["google_maps", "website", "seo"]
+      },
+      "status": {
+        "type": "string",
+        "title": "Status",
+        "description": "Run status for this item.",
+        "example": "ok"
+      },
+      "timestamp": {
+        "type": "string",
+        "title": "Timestamp",
+        "description": "UTC ISO timestamp when processing started.",
+        "example": "2026-07-09T06:00:03.000000+00:00"
+      },
+      "summary": {
+        "type": "object",
+        "title": "Summary",
+        "description": "Counters and timing for the run item.",
+        "properties": {
+          "requested_count": {
+            "type": "integer",
+            "title": "Requested count",
+            "description": "Requested number of records.",
+            "example": 20
+          },
+          "discovered_count": {
+            "type": "integer",
+            "title": "Discovered count",
+            "description": "Actual number of returned records.",
+            "example": 12
+          },
+          "duration_seconds": {
+            "type": "number",
+            "title": "Duration (seconds)",
+            "description": "Execution duration in seconds.",
+            "example": 4.231
+          }
+        },
+        "required": ["requested_count", "discovered_count", "duration_seconds"]
+      },
+      "data": {
+        "type": "object",
+        "title": "Payload data",
+        "description": "Mode-specific payload. For google_maps: BusinessSearchResult. For website: WebsiteAnalysisResult. For seo: SeoAnalysisResult."
+      }
+    },
+    "required": ["mode", "status", "timestamp", "summary", "data"]
+  },
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "description": "Top-level run result envelope.",
+      "transformation": {
+        "fields": ["timestamp", "mode", "status", "summary.requested_count", "summary.discovered_count", "summary.duration_seconds", "data"]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "timestamp": {
+            "label": "Timestamp",
+            "format": "date"
+          },
+          "mode": {
+            "label": "Mode",
+            "format": "text"
+          },
+          "status": {
+            "label": "Status",
+            "format": "text"
+          },
+          "summary.requested_count": {
+            "label": "Requested",
+            "format": "number"
+          },
+          "summary.discovered_count": {
+            "label": "Discovered",
+            "format": "number"
+          },
+          "summary.duration_seconds": {
+            "label": "Duration (s)",
+            "format": "number"
+          },
+          "data": {
+            "label": "Data",
+            "format": "object"
+          }
+        }
+      }
+    }
+  }
+}
