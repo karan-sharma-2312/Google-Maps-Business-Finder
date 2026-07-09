@@ -1,0 +1,7 @@
+{
+  "actorSpecification": 1,
+  "name": "google-maps-business-finder",
+  "version": "0.1",
+  "input": "./INPUT_SCHEMA.json",
+  "dockerfile": "../Dockerfile"
+}
