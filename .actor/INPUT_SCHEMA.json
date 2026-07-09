@@ -3,7 +3,6 @@
   "description": "Run Google Maps discovery or single-URL analysis (website/seo).",
   "type": "object",
   "schemaVersion": 1,
-  "additionalProperties": false,
   "properties": {
     "mode": {
       "title": "Run Mode",
@@ -25,7 +24,7 @@
     "query": {
       "title": "Business Search Query",
       "type": "string",
-      "description": "Search phrase for Google Maps mode, for example: coffee shops or plumbers.",
+      "description": "Required when mode is google_maps. Example: coffee shops or plumbers.",
       "minLength": 2,
       "editor": "textfield"
     },
@@ -46,16 +45,8 @@
     },
     "url": {
       "title": "Website URL",
-      "description": "Required for website and seo modes.",
-      "oneOf": [
-        {
-          "type": "string",
-          "format": "uri"
-        },
-        {
-          "type": "null"
-        }
-      ],
+      "type": "string",
+      "description": "Required when mode is website or seo. Enter a full URL including https://",
       "editor": "textfield"
     },
     "save_json": {
@@ -67,45 +58,5 @@
   },
   "required": [
     "mode"
-  ],
-  "allOf": [
-    {
-      "if": {
-        "properties": {
-          "mode": {
-            "const": "google_maps"
-          }
-        }
-      },
-      "then": {
-        "required": [
-          "query"
-        ]
-      }
-    },
-    {
-      "if": {
-        "properties": {
-          "mode": {
-            "enum": [
-              "website",
-              "seo"
-            ]
-          }
-        }
-      },
-      "then": {
-        "required": [
-          "url"
-        ],
-        "properties": {
-          "url": {
-            "type": "string",
-            "format": "uri",
-            "minLength": 1
-          }
-        }
-      }
-    }
   ]
 }
